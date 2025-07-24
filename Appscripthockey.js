@@ -228,8 +228,7 @@ function findRowsNeedingHubDBCreation(allData, sheet, changes) {
     const data = allData[uniqueId];
     if (!data) return;
     
-     const hasRequiredData = data.match_no && data.date_and_time && 
-                           data.team_1 && data.team_2;                       
+     const hasRequiredData = data.match_no && data.date_and_time && data.team_1 && data.team_2;                       
     
     const missingHubDBRowId = !data.hubdbRowId;
     
@@ -256,8 +255,7 @@ function createHubDBRows(rowsNeedingCreation, sheet) {
     const rowNumbers = rowsNeedingCreation.map(row => row.sheetRow);
     clearSyncStatusForRows(sheet, rowNumbers);
     
-    for (let i = 0; i < rowsNeedingCreation.length; i++) {
-      const rowInfo = rowsNeedingCreation[i];
+    for (const rowInfo of rowsNeedingCreation) {  // Changed to for-of loop
       console.log('Creating HubDB rowInfo...', rowInfo);
       
       // Set status to "processing" before API call
