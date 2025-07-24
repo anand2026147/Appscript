@@ -52,11 +52,11 @@ function clearAllSyncStatus(sheet, lastRow) {
     console.log(`Clearing sync status for all rows from ${DATA_START_ROW} to ${lastRow}`);
     
     // Clear sync status column (M)
-    const statusRange = sheet.getRange(DATA_START_ROW, SYNC_STATUS_ID_COLUMN, lastRow - DATA_START_ROW + 1, 1);
+   // const statusRange = sheet.getRange(DATA_START_ROW, SYNC_STATUS_ID_COLUMN, lastRow - DATA_START_ROW + 1, 1);
     //statusRange.setValue('');
     
     // Clear sync message column (N)
-    const messageRange = sheet.getRange(DATA_START_ROW, SYNC_MESSAGE_ID_COLUMN, lastRow - DATA_START_ROW + 1, 1);
+    //const messageRange = sheet.getRange(DATA_START_ROW, SYNC_MESSAGE_ID_COLUMN, lastRow - DATA_START_ROW + 1, 1);
     //messageRange.setValue('');
     
     console.log('All sync status cleared');
