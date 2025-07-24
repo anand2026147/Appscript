@@ -648,7 +648,7 @@ function sendToHubSpot(changes, sheet) {
             const successfulDeletions = batchResponseData.results?.filter(r => r.status === 'success') || [];
             
             deleteChanges.forEach(change => {
-              if (change.oldData && change.oldData.sheetRow) {
+              if (change.oldData?.sheetRow) {
                 const wasDeleted = successfulDeletions.some(result => 
                   result.hubdbId === change.oldData.hubdbRowId
                 );
@@ -667,7 +667,7 @@ function sendToHubSpot(changes, sheet) {
           } else {
             // Batch operation failed, update all with error status
             deleteChanges.forEach(change => {
-              if (change.oldData && change.oldData.sheetRow) {
+              if (change.oldData?.sheetRow) {
                 sheet.getRange(change.oldData.sheetRow, SYNC_STATUS_ID_COLUMN).setValue("error");
                 sheet.getRange(change.oldData.sheetRow, SYNC_MESSAGE_ID_COLUMN).setValue(`Batch deletion failed: ${batchResponseData.message || 'Unknown error'}`);
               }
@@ -677,7 +677,7 @@ function sendToHubSpot(changes, sheet) {
           console.warn('Batch delete failed, handling individually');
           // Update error status and add back to otherChanges for individual processing
           deleteChanges.forEach(change => {
-            if (change.oldData && change.oldData.sheetRow) {
+            if (change.oldData?.sheetRow) {
               sheet.getRange(change.oldData.sheetRow, SYNC_STATUS_ID_COLUMN).setValue("error");
               sheet.getRange(change.oldData.sheetRow, SYNC_MESSAGE_ID_COLUMN).setValue(`HTTP ${batchResponseCode}: ${batchResponseText}`);
             }
@@ -689,7 +689,7 @@ function sendToHubSpot(changes, sheet) {
         console.error('Batch delete error, handling individually:', batchError);
         // Update error status and add back to otherChanges for individual processing
         deleteChanges.forEach(change => {
-          if (change.oldData && change.oldData.sheetRow) {
+          if (change.oldData?.sheetRow) {
             sheet.getRange(change.oldData.sheetRow, SYNC_STATUS_ID_COLUMN).setValue("error");
             sheet.getRange(change.oldData.sheetRow, SYNC_MESSAGE_ID_COLUMN).setValue(`Exception: ${batchError.message}`);
           }
