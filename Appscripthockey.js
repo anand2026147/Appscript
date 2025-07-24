@@ -706,7 +706,7 @@ function sendToHubSpot(changes, sheet) {
       otherChanges.forEach(change => {
         if (change.row) {
           sheet.getRange(change.row, SYNC_STATUS_ID_COLUMN).setValue("syncing");
-        } else if (change.type === 'DELETED' && change.oldData && change.oldData.sheetRow) {
+        } else if (change.type === 'DELETED' && change.oldData?.sheetRow) {
           sheet.getRange(change.oldData.sheetRow, SYNC_STATUS_ID_COLUMN).setValue("syncing");
         }
       });
@@ -742,7 +742,7 @@ function sendToHubSpot(changes, sheet) {
         
         // Update success status for all processed rows
         otherChanges.forEach(change => {
-          if (change.type === 'DELETED' && change.oldData && change.oldData.sheetRow) {
+          if (change.type === 'DELETED' && change.oldData?.sheetRow) {
             // For delete operations, clear hs_id and update status
             sheet.getRange(change.oldData.sheetRow, HUBDB_ROW_ID_COLUMN).setValue('');
             sheet.getRange(change.oldData.sheetRow, SYNC_STATUS_ID_COLUMN).setValue("deleted");
