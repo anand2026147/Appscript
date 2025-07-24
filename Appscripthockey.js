@@ -50,15 +50,7 @@ function clearAllSyncStatus(sheet, lastRow) {
     if (lastRow <= DATA_START_ROW) return;
     
     console.log(`Clearing sync status for all rows from ${DATA_START_ROW} to ${lastRow}`);
-    
-    // Clear sync status column (M)
-   // const statusRange = sheet.getRange(DATA_START_ROW, SYNC_STATUS_ID_COLUMN, lastRow - DATA_START_ROW + 1, 1);
-    //statusRange.setValue('');
-    
-    // Clear sync message column (N)
-    //const messageRange = sheet.getRange(DATA_START_ROW, SYNC_MESSAGE_ID_COLUMN, lastRow - DATA_START_ROW + 1, 1);
-    //messageRange.setValue('');
-    
+
     console.log('All sync status cleared');
   } catch (error) {
     console.error('Error clearing all sync status:', error);
@@ -236,10 +228,6 @@ function findRowsNeedingHubDBCreation(allData, sheet, changes) {
     const data = allData[uniqueId];
     if (!data) return;
     
-    // const hasRequiredData = data.game_num && data.date_and_time && 
-    //                        data.category && data.sub_category && data.round && 
-    //                        data.court && data.team_1 && data.team_2;
-
      const hasRequiredData = data.match_no && data.date_and_time && 
                            data.team_1 && data.team_2;                       
     
