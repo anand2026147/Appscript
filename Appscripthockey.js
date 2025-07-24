@@ -227,11 +227,8 @@ function findRowsNeedingHubDBCreation(allData, sheet, changes) {
   changedUniqueIds.forEach(uniqueId => {
     const data = allData[uniqueId];
     if (!data) return;
-    
-     const hasRequiredData = data.match_no && data.date_and_time && data.team_1 && data.team_2;                       
-    
+    const hasRequiredData = data.match_no && data.date_and_time && data.team_1 && data.team_2;
     const missingHubDBRowId = !data.hubdbRowId;
-    
     if (hasRequiredData && missingHubDBRowId) {
       rowsNeedingCreation.push({
         uniqueId: uniqueId,
@@ -624,11 +621,12 @@ function sendToHubSpot(changes, sheet) {
       
       try {
         // Set processing status for delete operations
-        deleteChanges.forEach(change => {
-          if (change.oldData && change.oldData.sheetRow) {
-            sheet.getRange(change.oldData.sheetRow, SYNC_STATUS_ID_COLUMN).setValue("syncing");
-          }
-        });
+      deleteChanges.forEach(change => {
+        if (change.oldData?.sheetRow) {
+          sheet.getRange(change.oldData.sheetRow, SYNC_STATUS_ID_COLUMN).setValue('syncing');
+        }
+      });
+
         
         const batchResponse = UrlFetchApp.fetch(`${HUBSPOT_SERVERLESS_ENDPOINT}`, {
           method: 'POST',
