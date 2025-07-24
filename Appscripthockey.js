@@ -801,7 +801,7 @@ function getStoredData() {
     return stored ? JSON.parse(stored) : {};
   } catch (error) {
     console.log('No stored data found (first run)');
-    return {};
+    return error;
   }
 }
 
