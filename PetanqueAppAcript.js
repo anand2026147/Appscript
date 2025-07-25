@@ -5,7 +5,6 @@ const HUBDB_ROW_ID_COLUMN = 1; // Column A for storing HubDB row ID (hs_id)
 const SYNC_STATUS_ID_COLUMN = 8; // Column M for storing sync status
 const SYNC_MESSAGE_ID_COLUMN = 9; // Column N for storing sync message 
 
-// TARGET SHEET CONFIGURATION - Change this to switch sheets
 const TARGET_SHEET_NAME = 'Sheet1';
 /**
  * Get the target sheet by name
